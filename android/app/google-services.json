@@ -1,0 +1,79 @@
+{
+  "project_info": {
+    "project_number": "745672989985",
+    "firebase_url": "https://updategroup-ef41f.firebaseio.com",
+    "project_id": "updategroup-ef41f",
+    "storage_bucket": "updategroup-ef41f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745672989985:android:1395ef369676e2c2",
+        "android_client_info": {
+          "package_name": "com.updategroupdevelopment.updategroup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "745672989985-6ptpp9lkobg64tpj0v3sv42r419ian0l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.updategroupdevelopment.updategroup",
+            "certificate_hash": "abdd86bbe3a42857b783d72d74e1959d052fce08"
+          }
+        },
+        {
+          "client_id": "745672989985-i3kmp9dbhh1n1mg53rl8bk2l6h7jst3g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.updategroupdevelopment.updategroup",
+            "certificate_hash": "49b812b17af3c3b25021f13fb605e0c5c93a6f35"
+          }
+        },
+        {
+          "client_id": "745672989985-iohcahrc19nqaee2530lh1t4dhri91nj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.updategroupdevelopment.updategroup",
+            "certificate_hash": "917d82319fb76c6f77cfb0226881daf416096ca5"
+          }
+        },
+        {
+          "client_id": "745672989985-3jrb77h5tqajblf1qj1as9jhvd7655u8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.updategroupdevelopment.updategroup",
+            "certificate_hash": "0928203bc162ff4b57819e0113148db1ad26e3c0"
+          }
+        },
+        {
+          "client_id": "745672989985-1asrjmb6cbiok67k8ujnhjmvf7nj6r3d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANEty2p1un3bSsQZqu7YGG52fWx37nD8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "745672989985-1asrjmb6cbiok67k8ujnhjmvf7nj6r3d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "745672989985-q2kh3878jv9nmltb1atg5hqk3si8ofb7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.updategroupdevelopment.updategroup"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
