@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:simple_permissions/simple_permissions.dart';
+//import 'package:simple_permissions/simple_permissions.dart';
 import 'package:updateproject/models/user.dart';
 import 'package:updateproject/screens/home.dart';
 import 'package:updateproject/screens/map.dart';
@@ -28,23 +28,23 @@ class _RegisterState extends State<Register> {
   @override
   void initState() {
     checkFGS();
-    initplatform();
+    //initplatform();
     super.initState();
   }
 
   //its just for getting the platform version
-  initplatform() async {
-    String platfrom;
-    try {
-      platfrom = await SimplePermissions.platformVersion;
-    } on PlatformException {
-      platfrom = "platform not found";
-    }
-    //if object is removed from the tree.
-    if (!mounted) return;
-    //otherwise set the platform to our _platformversion global variable
-    // setState(() => _platformVersion = platfrom);
-  }
+  // initplatform() async {
+  //   String platfrom;
+  //   try {
+  //     platfrom = await SimplePermissions.platformVersion;
+  //   } on PlatformException {
+  //     platfrom = "platform not found";
+  //   }
+  //   //if object is removed from the tree.
+  //   if (!mounted) return;
+  //   //otherwise set the platform to our _platformversion global variable
+  //   // setState(() => _platformVersion = platfrom);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -237,8 +237,8 @@ class _RegisterState extends State<Register> {
   }
 
   getAdress() async {
-    bool granted = await requestPermission();
-    if (granted) {
+   // bool granted = await requestPermission();
+    // if (granted) {
       final result = await Navigator.push(
           context,
           MaterialPageRoute(
@@ -250,25 +250,25 @@ class _RegisterState extends State<Register> {
           _adressController.text = result.toString();
         });
       }
-    } else {
+   // } else {
       UI.dialog(context, 'لا يوجد تصريح',
           ' لم يتم السماح لخدمة تحديد الموقع بالعمل, برجاء اعطاء التصريح حتى تتمكن من تحديد العنوان', 'حاول مرة اخرى');
-    }
+   // }
   }
 
-  Future<bool> requestPermission() async {
-    Permission coarseLocation = Permission.AccessCoarseLocation;
-    Permission fineLocation = Permission.AccessFineLocation;
+  // Future<bool> requestPermission() async {
+  //   Permission coarseLocation = Permission.AccessCoarseLocation;
+  //   Permission fineLocation = Permission.AccessFineLocation;
 
-    bool check1 = await SimplePermissions.checkPermission(coarseLocation);
-    bool check2 = await SimplePermissions.checkPermission(fineLocation);
-    if (check1 || check2) {
-      return true;
-    } else {
-      PermissionStatus result1 = await SimplePermissions.requestPermission(coarseLocation);
-      PermissionStatus result2 = await SimplePermissions.requestPermission(fineLocation);
-      if (result1 == PermissionStatus.authorized || result2 == PermissionStatus.authorized) return true;
-      return false;
-    }
-  }
+  //   bool check1 = await SimplePermissions.checkPermission(coarseLocation);
+  //   bool check2 = await SimplePermissions.checkPermission(fineLocation);
+  //   if (check1 || check2) {
+  //     return true;
+  //   } else {
+  //     PermissionStatus result1 = await SimplePermissions.requestPermission(coarseLocation);
+  //     PermissionStatus result2 = await SimplePermissions.requestPermission(fineLocation);
+  //     if (result1 == PermissionStatus.authorized || result2 == PermissionStatus.authorized) return true;
+  //     return false;
+  //   }
+  // }
 }
