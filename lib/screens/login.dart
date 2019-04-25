@@ -5,6 +5,7 @@ import '../screens/home.dart';
 import '../screens/register.dart';
 import '../ui/ui.dart';
 import '../utility/auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LogIn extends StatefulWidget {
   @override
@@ -15,6 +16,77 @@ class _LogInState extends State<LogIn> {
   final TextEditingController _emailController = new TextEditingController();
   final TextEditingController _passwordController = new TextEditingController();
   bool _isSignInButtonDisabled = false;
+  static dialog(BuildContext context, String title, String msg,
+      String buttonMsg, onPressed) {
+    var alert = new AlertDialog(
+      title: new Text(
+        title,
+        textDirection: TextDirection.rtl,
+      ),
+      content: Container(
+        height: 250,
+        child: ListView(
+          
+          children: [
+          new Text(
+            msg,
+            textDirection: TextDirection.rtl
+          ),
+        ]),
+      ),
+      actions: <Widget>[
+        Directionality(
+          textDirection: TextDirection.rtl,
+          child: new FlatButton(
+            onPressed: () {
+              onPressed();
+            },
+            child: new Text(
+              buttonMsg,
+              textDirection: TextDirection.rtl,
+            ),
+          ),
+        )
+      ],
+    );
+
+    showDialog(context: context, builder: (context) => alert);
+  }
+
+  SharedPreferences _sharedPreferences;
+  void _checkIfFirstTime() async {
+    _sharedPreferences = await SharedPreferences.getInstance();
+
+    bool first = _sharedPreferences.getBool("first");
+
+    if (first != null || first.toString().isNotEmpty) {
+      dialog(
+          context,
+          "سياسة الخصوصية",
+          '''عن التطبيق ؟
+      نحن فريق هندسي مختص في تجهيز المباني والمنشآت اعمال تشطيبات وإعادة تأهيل واعمال صيانة ودعم فني . اعمال كهرباء و ميكانيكا وتشطيبات.
+      ويستخدم التطبيق موقع المستخدم لتسجيل الدخول او لتقديم طلب وايضا لا يجمع التطبيق اي معلومات تلقائية
+      ما هي حقوق إلغاء الاشتراك الخاصة بي؟
+      يمكنك إيقاف كل عملية جمع المعلومات عن طريق التطبيق بسهولة عن طريق إلغاء تثبيت التطبيق. يمكنك استخدام عمليات إلغاء التثبيت القياسية كما قد تكون متاحة كجزء من جهازك المحمول أو عبر سوق أو تطبيق الهاتف المحمول. يمكنك أيضًا طلب إلغاء الاشتراك عبر البريد الإلكتروني ، على
+      contact@updategroup.net
+      سياسة الاحتفاظ ب البيانات 
+      سنحتفظ بالبيانات المقدمة من المستخدم طالما أنك تستخدم التطبيق ولفترة زمنية معقولة بعد ذلك. سوف نحتفظ بالمعلومات التي تم جمعها تلقائيًا لمدة تصل إلى 24 شهرًا وبعد ذلك قد نقوم بتخزينها بشكل إجمالي. إذا كنت تريد منا حذف البيانات التي قدمها المستخدم والتي قدمتها عبر التطبيق ، فيرجى الاتصال بنا على contact@updategroup.net وسنقوم بالرد في وقت معقول. يرجى ملاحظة أن بعض أو كل البيانات المقدمة من المستخدم قد تكون مطلوبة حتى يعمل التطبيق بشكل صحيح.
+      الاطفال
+      نحن لا نستخدم التطبيق لالتماس بيانات من الأطفال دون سن 13 عامًا أو تسويقها للأطفال. إذا علم أحد الوالدين أو الوصي أن طفله أو طفلها قد زودنا بمعلومات دون موافقته ، ينبغي عليه / لها الاتصال بنا contact@updategroup.net . سنقوم بحذف هذه المعلومات من ملفاتنا في غضون فترة زمنية معقولة.
+      قد يتم تحديث سياسة الخصوصية هذه من وقت لآخر لأي سبب من الأسباب. يُنصح بالرجوع إلى سياسة الخصوصية هذه بانتظام لمعرفة أي تغييرات ، لأن الاستخدام المستمر يعتبر موافقة على جميع التغييرات.
+      ''',
+          'موافق', () {
+        _sharedPreferences.setBool('first', true);
+        Navigator.pop(context);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _checkIfFirstTime();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -269,10 +341,10 @@ class _LogInState extends State<LogIn> {
         } else {
           UI.toast(context, 'برجاء اكمال باقي البيانات');
           UI.navigateTo(context, Register(facebookGoogleRegister: true), 0);
-        } 
-      }else {
-          UI.dialog(context, "خطأ", "اعد المحاولة", 'اعد');
         }
+      } else {
+        UI.dialog(context, "خطأ", "اعد المحاولة", 'اعد');
+      }
     });
   }
 
@@ -293,10 +365,10 @@ class _LogInState extends State<LogIn> {
         } else {
           UI.toast(context, 'برجاء اكمال باقي البيانات');
           UI.navigateTo(context, Register(facebookGoogleRegister: true), 0);
-        } 
-      }else {
-          UI.dialog(context, "خطأ", "اعد المحاولة", 'اعد');
         }
+      } else {
+        UI.dialog(context, "خطأ", "اعد المحاولة", 'اعد');
+      }
     });
   }
 

@@ -5,6 +5,7 @@ void main() {
   runApp(MaterialApp(
       title: 'Update group',
       debugShowCheckedModeBanner: false,
+      
       theme: ThemeData(
         brightness: Brightness.light,
         buttonColor: Colors.orange[800],
@@ -13,9 +14,11 @@ void main() {
         indicatorColor: Colors.orange[800],
         highlightColor: Colors.grey[400],
         splashColor: Colors.orange,
-        
         primaryColor: Colors.orange,
+        
       ),
-      home: SplashScreen(),
+      home: Directionality(child: SplashScreen(),
+      textDirection: TextDirection.rtl,
+      ),
     ));
 }
