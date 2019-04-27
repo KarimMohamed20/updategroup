@@ -1,4 +1,3 @@
-platform :ios, '10.0'
 inhibit_all_warnings!
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
