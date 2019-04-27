@@ -27,7 +27,7 @@ dependencies:
   firebase_auth: ^0.7.0
   cloud_firestore: ^0.8.2+3
   shared_preferences:
- # simple_permissions: ^0.1.9
+  permission_handler: ^3.0.1
   google_maps_flutter: ^0.4.0
   geocoder: ^0.1.2
   toast:
