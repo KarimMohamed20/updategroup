@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-//import 'package:simple_permissions/simple_permissions.dart';
+import 'package:simple_permissions/simple_permissions.dart';
 import 'package:updateproject/models/user.dart';
 import 'package:updateproject/screens/home.dart';
 import 'package:updateproject/screens/map.dart';
@@ -257,18 +257,18 @@ class _RegisterState extends State<Register> {
   }
 
   Future<bool> requestPermission() async {
-    // Permission coarseLocation = Permission.AccessCoarseLocation;
-    // Permission fineLocation = Permission.AccessFineLocation;
+    Permission coarseLocation = Permission.AccessCoarseLocation;
+    Permission fineLocation = Permission.AccessFineLocation;
 
-    // bool check1 = await SimplePermissions.checkPermission(coarseLocation);
-    // bool check2 = await SimplePermissions.checkPermission(fineLocation);
-    // if (check1 || check2) {
-    //   return true;
-    // } else {
-    //   PermissionStatus result1 = await SimplePermissions.requestPermission(coarseLocation);
-    //   PermissionStatus result2 = await SimplePermissions.requestPermission(fineLocation);
-    //   if (result1 == PermissionStatus.authorized || result2 == PermissionStatus.authorized) return true;
-    //   return false;
-    // }
+    bool check1 = await SimplePermissions.checkPermission(coarseLocation);
+    bool check2 = await SimplePermissions.checkPermission(fineLocation);
+    if (check1 || check2) {
+      return true;
+    } else {
+      PermissionStatus result1 = await SimplePermissions.requestPermission(coarseLocation);
+      PermissionStatus result2 = await SimplePermissions.requestPermission(fineLocation);
+      if (result1 == PermissionStatus.authorized || result2 == PermissionStatus.authorized) return true;
+      return false;
+    }
   }
 }
