@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:simple_permissions/simple_permissions.dart';
 import 'package:updateproject/models/user.dart';
 import 'package:updateproject/screens/home.dart';
 import 'package:updateproject/screens/map.dart';
@@ -24,7 +24,6 @@ class _RegisterState extends State<Register> {
   final TextEditingController _adressController = new TextEditingController();
   final TextEditingController _phoneController = new TextEditingController();
   bool facebookGoogleRegister;
-  PermissionStatus _permissionStatus = PermissionStatus.unknown;
 
   @override
   void initState() {
@@ -56,7 +55,7 @@ class _RegisterState extends State<Register> {
           children: <Widget>[
             header(),
             inputField(
-                'البريد الاليكتروني',
+                'البريد الالكتروني',
                 ' أدخل البريد ',
                 TextInputType.emailAddress,
                 _emailController,
@@ -298,19 +297,17 @@ class _RegisterState extends State<Register> {
 
   
   Future<bool> requestPermission() async {
-    final List<PermissionGroup> permissions = <PermissionGroup>[PermissionGroup.locationWhenInUse];
-    final Map<PermissionGroup, PermissionStatus> permissionRequestResult =
-        await PermissionHandler().requestPermissions(permissions);
+    Permission coarseLocation = Permission.AccessCoarseLocation;
+    Permission fineLocation = Permission.AccessFineLocation;
 
-    setState(() {
-      print(permissionRequestResult);
-      _permissionStatus = permissionRequestResult[PermissionGroup.locationWhenInUse];
-      print(_permissionStatus);
-    });
-
-    if (_permissionStatus == PermissionStatus.granted){
+    bool check1 = await SimplePermissions.checkPermission(coarseLocation);
+    bool check2 = await SimplePermissions.checkPermission(fineLocation);
+    if (check1 || check2) {
       return true;
     } else {
+      PermissionStatus result1 = await SimplePermissions.requestPermission(coarseLocation);
+      PermissionStatus result2 = await SimplePermissions.requestPermission(fineLocation);
+      if (result1 == PermissionStatus.authorized || result2 == PermissionStatus.authorized) return true;
       return false;
     }
   }
